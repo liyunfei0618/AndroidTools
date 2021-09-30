@@ -46,6 +46,8 @@ class Importer:
                 if k not in self.translates:
                     self.translates[k] = {}
                 for support_language in self.support_languages:
+                    if support_language not in self.translates[k]:
+                        self.translates[k][support_language] = ""
                     if support_language != language:
                         self.translates[k][support_language] = v
                         
@@ -84,8 +86,11 @@ class Importer:
                 if k not in self.translates:
                     self.translates[k] = {}
                 for support_language in self.support_languages:
+                    if support_language not in self.translates[k]:
+                        self.translates[k][support_language] = ""
                     if support_language == language:
                         self.translates[k][support_language] = v
+ 
      
         # 新增多语言的情况：要为应用初始化的时候选中的多语言设置词条
         for sl in self.appConfig.support_languages:
